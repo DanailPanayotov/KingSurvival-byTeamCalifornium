@@ -35,7 +35,7 @@ namespace KingSurvival
         public King()
         {
             this.x = 0;
-            this.y = 0;
+            this.zda = 0;
         }
 
         /// <summary>
