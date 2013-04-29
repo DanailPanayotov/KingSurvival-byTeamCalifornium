@@ -9,6 +9,7 @@ namespace KingSurvival
     using System;
     using System.Linq;
 
+    //proba
     /// <summary>
     /// Class King which creates King objects with X and Y coordinates.
     /// </summary>
