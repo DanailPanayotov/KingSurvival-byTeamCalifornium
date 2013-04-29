@@ -8,15 +8,16 @@ namespace KingSurvival
 {
     using System;
     using System.Linq;
+    using System.Collections.Generic;
     
     public class Game
     {
         static int size = 8;
-        static King theKing = new King(4, 7);
-        static Pawn pawnA = new Pawn(1, 0);        
+        static King theKing = new King(4, 7);       
         static Pawn pawnB = new Pawn(3, 0);        
-        static Pawn pawnC = new Pawn(5, 0);        
+        static Pawn pawnC = new Pawn(5, 5);        
         static Pawn pawnD = new Pawn(7, 0);
+        static Pawn pawnA = new Pawn(15,1);
         
         static bool isKingTurn = true;
 
