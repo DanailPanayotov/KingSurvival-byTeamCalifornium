@@ -10,6 +10,7 @@ namespace KingSurvival
     using System.Linq;
     //trying something
     
+    //trying again
     public class Game
     {
         static int size = 8;
