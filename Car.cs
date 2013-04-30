@@ -15,7 +15,8 @@ namespace CarqIPeshkite
     // create conflict with myself (github-VS)(2) - ivo
         // tova e carq
         //ima si koordinati
-    //added a comment to see the merge
+        // add line of code so that pavla tests merge option...
+    //added a comment to see the merge - I hope It works
     {
         int x;
         int y;

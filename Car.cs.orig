@@ -7,20 +7,16 @@ namespace CarqIPeshkite
 {
     class Car
 
-<<<<<<< HEAD
-        // trying the plugin
-    // trying the plugin again
-    // change the code on github.com to see if it sync's in VS 
-    // create conflict with myself (github-VS)(1) - ivo
-    // create conflict with myself (github-VS)(2) - ivo
-=======
         // trying the plugin - ivo
     // trying the plugin again - ivo
     // change the code on github.com to see if it sync's in VS -ivo
+    // create conflict with myself (github-VS)(1) - ivo
     // create conflict with myself (github-VS) - ivo
->>>>>>> a6fed6da55170f1e868bf54ba4b9ae77f82e8b58
+    // create conflict with myself (github-VS)(2) - ivo
         // tova e carq
         //ima si koordinati
+        // add line of code so that pavla tests merge option...
+    //added a comment to see the merge
     {
         int x;
         int y;
