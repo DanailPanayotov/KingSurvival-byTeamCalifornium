@@ -18,6 +18,7 @@ namespace CarqIPeshkite
         // add line of code so that pavla tests merge option...
         //add smth
         // Create conflict to merge with myself - pavla
+        //make a conflict - pavla
     {
         int x;
         int y;
