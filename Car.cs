@@ -10,6 +10,7 @@ namespace CarqIPeshkite
         // trying the plugin
     // trying the plugin again
     // change the code on github.com to see if it sync's in VS 
+    // create conflict with myself (github-VS)(1) - ivo
         // tova e carq
         //ima si koordinati
     {
