@@ -15,6 +15,7 @@ namespace CarqIPeshkite
     // create conflict with myself (github-VS)(2) - ivo
         // tova e carq
         //ima si koordinati
+        // add line of code so that pavla tests merge option...
     {
         int x;
         int y;
