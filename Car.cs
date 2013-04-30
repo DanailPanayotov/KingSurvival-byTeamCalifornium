@@ -7,6 +7,7 @@ namespace CarqIPeshkite
 {
     class Car
 
+        // trying the plugin
         // tova e carq
         //ima si koordinati
     {
