@@ -1,49 +1,58 @@
-// ********************************
-// <copyright file="Game.cs" company="Team Californium">
-// Copyright (c) 2013 Team Californium. All rights reserved.
-// </copyright>
-//
-// ********************************
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using CarqIPeshkite;
+
 namespace KingSurvival
 {
-    using System;
-    using System.Linq;
-<<<<<<< HEAD
-    //trying something
-=======
-    using System.Collections.Generic;
->>>>>>> f4555594a403f9ed8e2c670f41e33c3428a24134
-    
-    //trying again
-    public class Game
+    class Game
     {
         static int size = 8;
-        static King theKing = new King(4, 7);       
-        static Pawn pawnB = new Pawn(3, 0);        
-        static Pawn pawnC = new Pawn(5, 5);        
-        static Pawn pawnD = new Pawn(7, 0);
-        static Pawn pawnA = new Pawn(15,1);
+        static Car car = new Car(4, 7);
+
+
+        
+        static Peshka peshkaA = new Peshka(1, 0);
+        
+        static Peshka peshkaB = new Peshka(3, 0);
+        
+        static Peshka peshkaC = new Peshka(5, 0);
+        
+        static Peshka peshkaD = new Peshka(7, 0);
         
         static bool isKingTurn = true;
 
+
+        
         static void Print(char[,] matrix)
-        {        
+        {
+        
             Console.Clear();
             
-            for (int i = 0; i < size; i++)           
-            {            
-                for (int j = 0; j < size; j++)                
-                {                
+            for (int i = 0; i < size; i++)
+            
+            {
+            
+                for (int j = 0; j < size; j++)
+                
+                {
+                
                     Console.Write("{0,2}", matrix[i, j]);
                 }
+
+
                
-                Console.WriteLine("");           
+                Console.WriteLine("");
+           
             }
+
+
         }
-
-        static void KingMove(int dirX, int dirY, char[,] matrix)
+        static void KingMove(int dirX, int dirY, char[,] matrica)
         {
-            if (theKing.X + dirX < 0 || theKing.X + dirX > size - 1)
+
+            if (car.X + dirX < 0 || car.X + dirX > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -52,7 +61,7 @@ namespace KingSurvival
                 return;
             }
 
-            if (theKing.Y + dirY < 0 || theKing.Y + dirY > size - 1)
+            if (car.Y + dirY < 0 || car.Y + dirY > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -60,43 +69,38 @@ namespace KingSurvival
                 isKingTurn = true;
                 return;
             }
-
-            if (matrix[theKing.Y + dirY, theKing.X + dirX] == 'A') 
+            if (matrica[car.Y + dirY, car.X + dirX] == 'A') 
             {
-                matrix[theKing.Y + dirY, theKing.X + dirX] = 'K';
-                matrix[pawnA.Y, pawnA.X] = '-';
+                matrica[car.Y + dirY, car.X + dirX] = 'K';
+                matrica[peshkaA.Y, peshkaA.X] = '-';
             }
-
-            if (matrix[theKing.Y + dirY, theKing.X + dirX] == 'B')
+            if (matrica[car.Y + dirY, car.X + dirX] == 'B')
             {
-                matrix[theKing.Y + dirY, theKing.X + dirX] = 'K';
-                matrix[pawnB.Y, pawnB.X] = '-';
+                matrica[car.Y + dirY, car.X + dirX] = 'K';
+                matrica[peshkaB.Y, peshkaB.X] = '-';
             }
-
-            if (matrix[theKing.Y + dirY, theKing.X + dirX] == 'C')
+            if (matrica[car.Y + dirY, car.X + dirX] == 'C')
             {
-                matrix[theKing.Y + dirY, theKing.X + dirX] = 'K';
-                matrix[pawnC.Y, pawnC.X] = '-';
+                matrica[car.Y + dirY, car.X + dirX] = 'K';
+                matrica[peshkaC.Y, peshkaC.X] = '-';
             }
-
-            if (matrix[theKing.Y + dirY, theKing.X + dirX] == 'D')
+            if (matrica[car.Y + dirY, car.X + dirX] == 'D')
             {
-                matrix[theKing.Y + dirY, theKing.X + dirX] = 'K';
-                matrix[pawnD.Y, pawnD.X] = '-';
+                matrica[car.Y + dirY, car.X + dirX] = 'K';
+                matrica[peshkaD.Y, peshkaD.X] = '-';
             }
-
-            matrix[theKing.Y, theKing.X] = '-';
-            matrix[theKing.Y + dirY, theKing.X + dirX] = 'K';
-            theKing.Y += dirY;
-            theKing.X += dirX;
+            matrica[car.Y, car.X] = '-';
+            matrica[car.Y + dirY, car.X + dirX] = 'K';
+            car.Y += dirY;
+            car.X += dirX;
             return;
         }
-
-        // TODO - One method for Pown move called with current pawn (A, B, C or D)
+        //abe tuka sym gi napravil edni... ama raboti
+        //kvo kat sa 4 metoda
         static bool PawnAMove(int dirX, int dirY, char[,] matrix)
         {
             //sledvat mnogo proverki
-            if (pawnA.X + dirX < 0 || pawnA.X + dirX > size - 1)
+            if (peshkaA.X + dirX < 0 || peshkaA.X + dirX > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -106,7 +110,7 @@ namespace KingSurvival
                 
             }
 
-            if (pawnA.Y + dirY < 0 || pawnA.Y + dirY > size - 1)
+            if (peshkaA.Y + dirY < 0 || peshkaA.Y + dirY > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -114,16 +118,13 @@ namespace KingSurvival
                 isKingTurn = false;
                 return false;
             }
-
-            if (matrix[pawnA.Y + dirY, pawnA.X + dirX] == 'K')
+            if (matrix[peshkaA.Y + dirY, peshkaA.X + dirX] == 'K')
             {
                 Console.WriteLine("Pawn`s win!");
                 return true;
             }
-
-            if (matrix[pawnA.Y + dirY, pawnA.X + dirX] == 'D' ||
-                matrix[pawnA.Y + dirY, pawnA.X + dirX] == 'B' || 
-                matrix[pawnA.Y + dirY, pawnA.X + dirX] == 'C')
+            if (matrix[peshkaA.Y + dirY, peshkaA.X + dirX] == 'D' || matrix[peshkaA.Y + dirY, peshkaA.X + dirX] == 'B'
+                                                             || matrix[peshkaA.Y + dirY, peshkaA.X + dirX] == 'C')
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -134,16 +135,15 @@ namespace KingSurvival
 
             //ako ne grymne do momenta znachi e validen hoda
            
-            matrix[pawnA.Y, pawnA.X] = '-';
-            matrix[pawnA.Y + dirY, pawnA.X + dirX] = 'A';
-            pawnA.Y += dirY;
-            pawnA.X += dirX;
+            matrix[peshkaA.Y, peshkaA.X] = '-';
+            matrix[peshkaA.Y + dirY, peshkaA.X + dirX] = 'A';
+            peshkaA.Y += dirY;
+            peshkaA.X += dirX;
             return false;
         }
-
         static bool PawnBMove(int dirX, int dirY, char[,] matrix)
         {//za dokumentaciq pregledai PawnAMove
-            if (pawnB.X + dirX < 0 || pawnB.X + dirX > size - 1)
+            if (peshkaB.X + dirX < 0 || peshkaB.X + dirX > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -152,7 +152,7 @@ namespace KingSurvival
                 return false;
             }
 
-            if (pawnB.Y + dirY < 0 || pawnB.Y + dirY > size - 1)
+            if (peshkaB.Y + dirY < 0 || peshkaB.Y + dirY > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -160,14 +160,14 @@ namespace KingSurvival
                 isKingTurn = false;
                 return false;
             }
-            if (matrix[pawnB.Y + dirY, pawnB.X + dirX] == 'K')
+            if (matrix[peshkaB.Y + dirY, peshkaB.X + dirX] == 'K')
             {
                 Console.WriteLine("Pawn`s win!");
                 return true;
             }
 
-            if (matrix[pawnB.Y + dirY, pawnB.X + dirX] == 'A' || matrix[pawnB.Y + dirY, pawnB.X + dirX] == 'C' 
-                || matrix[pawnB.Y + dirY, pawnB.X + dirX] == 'D')
+            if (matrix[peshkaB.Y + dirY, peshkaB.X + dirX] == 'A' || matrix[peshkaB.Y + dirY, peshkaB.X + dirX] == 'C' 
+                || matrix[peshkaB.Y + dirY, peshkaB.X + dirX] == 'D')
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -175,15 +175,15 @@ namespace KingSurvival
                 isKingTurn = false;
                 return false;
             }
-            matrix[pawnB.Y, pawnB.X] = '-';
-            matrix[pawnB.Y + dirY, pawnB.X + dirX] = 'B';
-            pawnB.Y += dirY;
-            pawnB.X += dirX;
+            matrix[peshkaB.Y, peshkaB.X] = '-';
+            matrix[peshkaB.Y + dirY, peshkaB.X + dirX] = 'B';
+            peshkaB.Y += dirY;
+            peshkaB.X += dirX;
             return false;
         }
         static bool PawnCMove(int dirX, int dirY, char[,] matrix)
         {//za dokumentaciq pregledai PawnAMove
-            if (pawnC.X + dirX < 0 || pawnC.X + dirX > size - 1)
+            if (peshkaC.X + dirX < 0 || peshkaC.X + dirX > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -191,7 +191,7 @@ namespace KingSurvival
                 isKingTurn = false;
                 return false;
             }
-            if (pawnC.Y + dirY < 0 || pawnC.Y + dirY > size - 1)
+            if (peshkaC.Y + dirY < 0 || peshkaC.Y + dirY > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -199,13 +199,13 @@ namespace KingSurvival
                 isKingTurn = false;
                 return false;
             }
-            if (matrix[pawnC.Y + dirY, pawnC.X + dirX] == 'K')
+            if (matrix[peshkaC.Y + dirY, peshkaC.X + dirX] == 'K')
             {
                 Console.WriteLine("Pawn`s win!");
                 return true;
             }
-            if (matrix[pawnC.Y + dirY, pawnC.X + dirX] == 'A' || matrix[pawnC.Y + dirY, pawnC.X + dirX] == 'B'
-                || matrix[pawnC.Y + dirY, pawnC.X + dirX] == 'D')
+            if (matrix[peshkaC.Y + dirY, peshkaC.X + dirX] == 'A' || matrix[peshkaC.Y + dirY, peshkaC.X + dirX] == 'B'
+                || matrix[peshkaC.Y + dirY, peshkaC.X + dirX] == 'D')
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -214,15 +214,15 @@ namespace KingSurvival
                 return false;
             }
 
-            matrix[pawnC.Y, pawnC.X] = '-';
-            matrix[pawnC.Y + dirY, pawnC.X + dirX] = 'C';
-            pawnC.Y += dirY;
-            pawnC.X += dirX;
+            matrix[peshkaC.Y, peshkaC.X] = '-';
+            matrix[peshkaC.Y + dirY, peshkaC.X + dirX] = 'C';
+            peshkaC.Y += dirY;
+            peshkaC.X += dirX;
             return false;
         }
         static bool PawnDMove(int dirX, int dirY, char[,] matrix)
         {//za dokumentaciq pregledai PawnAMove
-            if (pawnD.Y + dirY < 0 || pawnD.Y + dirY > size - 1)
+            if (peshkaD.Y + dirY < 0 || peshkaD.Y + dirY > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -231,7 +231,7 @@ namespace KingSurvival
                 return false;
             }
 
-            if (pawnD.X + dirX < 0 || pawnD.X + dirX > size - 1)
+            if (peshkaD.X + dirX < 0 || peshkaD.X + dirX > size - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -239,13 +239,13 @@ namespace KingSurvival
                 isKingTurn = false;
                 return false;
             }
-            if (matrix[pawnD.Y + dirY, pawnD.X + dirX] == 'K')
+            if (matrix[peshkaD.Y + dirY, peshkaD.X + dirX] == 'K')
             {
                 Console.WriteLine("Pawn`s win!");
                 return true;
             }
-            if (matrix[pawnD.Y + dirY, pawnD.X + dirX] == 'A' || matrix[pawnD.Y + dirY, pawnD.X + dirX] == 'B'
-                                                             || matrix[pawnD.Y + dirY, pawnD.X + dirX] == 'C')
+            if (matrix[peshkaD.Y + dirY, peshkaD.X + dirX] == 'A' || matrix[peshkaD.Y + dirY, peshkaD.X + dirX] == 'B'
+                                                             || matrix[peshkaD.Y + dirY, peshkaD.X + dirX] == 'C')
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
@@ -254,48 +254,42 @@ namespace KingSurvival
                 return false;
             }
 
-            matrix[pawnD.Y, pawnD.X] = '-';
-            matrix[pawnD.Y + dirY, pawnD.X + dirX] = 'D';
-            pawnD.Y += dirY;
-            pawnD.X += dirX;
+            matrix[peshkaD.Y, peshkaD.X] = '-';
+            matrix[peshkaD.Y + dirY, peshkaD.X + dirX] = 'D';
+            peshkaD.Y += dirY;
+            peshkaD.X += dirX;
             return false;
         }
 
                 
         static void Main()
         {
-            char[,] gameField = new char[,] 
-            {
-                {'+','-','+','-','+','-','+','-'},
-                {'-','+','-','+','-','+','-','+'},
-                {'+','-','+','-','+','-','+','-'},
-                {'-','+','-','+','-','+','-','+'},
-                {'+','-','+','-','+','-','+','-'},
-                {'-','+','-','+','-','+','-','+'},
-                {'+','-','+','-','+','-','+','-'},
-                {'-','+','-','+','-','+','-','+'}
-            };
-                        
-            gameField[pawnA.Y, pawnA.X] = 'A';
-            gameField[pawnB.Y, pawnB.X] = 'B';
-            gameField[pawnC.Y, pawnC.X] = 'C';
-            gameField[pawnD.Y, pawnD.X] = 'D';
-            gameField[theKing.Y, theKing.X] = 'K';
+            char[,] matrica = new char[,]   {{'+','-','+','-','+','-','+','-'},
+                                            {'-','+','-','+','-','+','-','+'},
+                                            {'+','-','+','-','+','-','+','-'},
+                                            {'-','+','-','+','-','+','-','+'},
+                                            {'+','-','+','-','+','-','+','-'},
+                                            {'-','+','-','+','-','+','-','+'},
+                                            {'+','-','+','-','+','-','+','-'},
+                                            {'-','+','-','+','-','+','-','+'}};
 
-            Print(gameField);
-
-            int movesCounter = 0;
+            
+            matrica[peshkaA.Y, peshkaA.X] = 'A';
+            matrica[peshkaB.Y, peshkaB.X] = 'B';
+            matrica[peshkaC.Y, peshkaC.X] = 'C';
+            matrica[peshkaD.Y, peshkaD.X] = 'D';
+            matrica[car.Y, car.X] = 'K';
+            Print(matrica);
             bool pobedaPeshki = false;
 
-            while (theKing.Y > 0 && theKing.Y < size && !pobedaPeshki)
+            while (car.Y > 0 && car.Y < size && !pobedaPeshki)
             {
-                movesCounter++;
                 isKingTurn = true;
                 while (isKingTurn)
                 {
                     isKingTurn = false;
 
-                    Print(gameField);
+                    Print(matrica);
                     Console.Write("King`s Turn:");
                     string direction = Console.ReadLine();
                     if (direction == "")
@@ -310,22 +304,22 @@ namespace KingSurvival
                     {
                         case "KUL":
                             {
-                                KingMove(-1, -1, gameField);
+                                KingMove(-1, -1, matrica);
                                 break;
                             }
                         case "KUR":
                             {
-                                KingMove(1, -1, gameField);
+                                KingMove(1, -1, matrica);
                                 break;
                             }
                         case "KDL":
                             {
-                                KingMove(-1, 1, gameField);
+                                KingMove(-1, 1, matrica);
                                 break;
                             }
                         case "KDR":
                             {
-                                KingMove(1, 1, gameField);
+                                KingMove(1, 1, matrica);
                                 break;
                             }
                         default:
@@ -342,7 +336,7 @@ namespace KingSurvival
                 while (!isKingTurn)
                 {
                     isKingTurn = true;
-                    Print(gameField);
+                    Print(matrica);
                     Console.Write("Pawn`s Turn:");
                     string direction = Console.ReadLine();
                     if (direction == "")
@@ -357,42 +351,42 @@ namespace KingSurvival
                     {
                         case "ADR":
                             {
-                                pobedaPeshki= PawnAMove(1, 1, gameField);
+                                pobedaPeshki= PawnAMove(1, 1, matrica);
                                 break;
                             }
                         case "ADL":
                             {
-                                pobedaPeshki = PawnAMove(-1, 1, gameField);
+                                pobedaPeshki = PawnAMove(-1, 1, matrica);
                                 break;
                             }
                         case "BDL":
                             {
-                                pobedaPeshki = PawnBMove(-1, 1, gameField);
+                                pobedaPeshki = PawnBMove(-1, 1, matrica);
                                 break;
                             }
                         case "BDR":
                             {
-                                pobedaPeshki = PawnBMove(1, 1, gameField);
+                                pobedaPeshki = PawnBMove(1, 1, matrica);
                                 break;
                             }
                         case "CDL":
                             {
-                                pobedaPeshki = PawnCMove(-1, 1, gameField);
+                                pobedaPeshki = PawnCMove(-1, 1, matrica);
                                 break;
                             }
                         case "CDR":
                             {
-                                pobedaPeshki = PawnCMove(1, 1, gameField);
+                                pobedaPeshki = PawnCMove(1, 1, matrica);
                                 break;
                             }
                         case "DDR":
                             {
-                              pobedaPeshki =   PawnDMove(1, 1, gameField);
+                              pobedaPeshki =   PawnDMove(1, 1, matrica);
                                 break;
                             }
                         case "DDL":
                             {
-                              pobedaPeshki = PawnDMove(-1, 1, gameField);
+                              pobedaPeshki = PawnDMove(-1, 1, matrica);
                                 break;
                             }
                         default:
@@ -404,20 +398,19 @@ namespace KingSurvival
                                 break;
                             }
                     }
-
-                    Print(gameField);
+                    Print(matrica);
                 }
             }
-
             if (pobedaPeshki)
             {
                 Console.WriteLine("Pawn`s win!");
             }
-
             else
             {
-                Console.WriteLine("King wins in {0} turns!", movesCounter);
+                Console.WriteLine("King`s win!");
             }
         }
     }
-}     
+}
+
+        
