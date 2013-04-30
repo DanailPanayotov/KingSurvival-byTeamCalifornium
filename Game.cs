@@ -11,6 +11,8 @@ namespace KingSurvival
         static int size = 8;
         static Car car = new Car(4, 7);
 
+        //pavla's commit in VS
+
 
         
         static Peshka peshkaA = new Peshka(1, 0);
