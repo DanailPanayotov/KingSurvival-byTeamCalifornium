@@ -17,6 +17,7 @@ namespace CarqIPeshkite
         //ima si koordinati
         // add line of code so that pavla tests merge option...
         //add smth
+        //I will have to merge - pavla
     {
         int x;
         int y;
