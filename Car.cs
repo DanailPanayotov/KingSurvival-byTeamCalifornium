@@ -7,9 +7,10 @@ namespace CarqIPeshkite
 {
     class Car
 
-        // trying the plugin
-    // trying the plugin again
-    // change the code on github.com to see if it sync's in VS 
+        // trying the plugin - ivo
+    // trying the plugin again - ivo
+    // change the code on github.com to see if it sync's in VS -ivo
+    // create conflict with myself (github-VS) - ivo
         // tova e carq
         //ima si koordinati
     {
