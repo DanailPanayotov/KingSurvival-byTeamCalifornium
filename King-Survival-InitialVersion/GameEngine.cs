@@ -7,8 +7,8 @@ namespace KingSurvival
     {
         static void Main()
         {
-            GameField game=new GameField();
-            char[,] matrica = game.Matrix;
+            GameField gameField=new GameField();
+            char[,] matrica = gameField.Matrix;
             Figure car = new King(7,4);
             Figure peshkaA = new Pawn(0, 1);
             Figure peshkaB = new Pawn(0, 3);
@@ -21,7 +21,7 @@ namespace KingSurvival
             matrica[peshkaC.X, peshkaC.Y] = 'C';
             matrica[peshkaD.X, peshkaD.Y] = 'D';
             matrica[car.X, car.Y] = 'K';
-            game.PrintGameField(matrica);
+            gameField.PrintGameField(matrica);
             bool pobedaPeshki = false;
             bool isKingTurn=true;
 
@@ -32,7 +32,7 @@ namespace KingSurvival
                 {
                     isKingTurn = false;
 
-                    game.PrintGameField(matrica);
+                    gameField.PrintGameField(matrica);
                     Console.Write("King`s Turn:");
                     string direction = Console.ReadLine();
                     if (direction == "")
@@ -47,9 +47,9 @@ namespace KingSurvival
                     {
                         case "KUL":
                             {
-                                if (game.CanMoveFugire(car,-1,-1,matrica))
+                                if (gameField.CanMoveFugire(car,-1,-1,matrica))
                                 {
-                                    game.MoveKing(car, -1, -1, matrica);
+                                    gameField.MoveKing(car, -1, -1, matrica);
                                 }
                                 else
                                 {
@@ -62,9 +62,9 @@ namespace KingSurvival
                             }
                         case "KUR":
                             {
-                                if (game.CanMoveFugire(car,-1, 1, matrica))
+                                if (gameField.CanMoveFugire(car,-1, 1, matrica))
                                 {
-                                    game.MoveKing(car, -1, 1, matrica);
+                                    gameField.MoveKing(car, -1, 1, matrica);
                                 }
                                 else
                                 {
@@ -78,9 +78,9 @@ namespace KingSurvival
                             }
                         case "KDL":
                             {
-                                if (game.CanMoveFugire(car , 1, -1, matrica))
+                                if (gameField.CanMoveFugire(car , 1, -1, matrica))
                                 {
-                                    game.MoveKing(car, 1, -1, matrica);
+                                    gameField.MoveKing(car, 1, -1, matrica);
                                 }
                                 else
                                 {
@@ -94,9 +94,9 @@ namespace KingSurvival
                             }
                         case "KDR":
                             {
-                                if (game.CanMoveFugire(car,1, 1, matrica))
+                                if (gameField.CanMoveFugire(car,1, 1, matrica))
                                 {
-                                    game.MoveKing(car, 1, 1, matrica);
+                                    gameField.MoveKing(car, 1, 1, matrica);
                                 }
                                 else
                                 {
@@ -121,7 +121,7 @@ namespace KingSurvival
                 while (!isKingTurn)
                 {
                     isKingTurn = true;
-                    game.PrintGameField(matrica);
+                    gameField.PrintGameField(matrica);
                     Console.Write("Pawn`s Turn:");
                     string direction = Console.ReadLine();
                     if (direction == "")
@@ -136,11 +136,11 @@ namespace KingSurvival
                     {
                         case "ADR":
                             {
-                                pobedaPeshki = game.IsPawnAWinner(peshkaA, 1, 1, matrica);
+                                pobedaPeshki = gameField.IsPawnAWinner(peshkaA, 1, 1, matrica);
 
-                                if (game.CanMoveFugire(peshkaA,1, 1, matrica))
+                                if (gameField.CanMoveFugire(peshkaA,1, 1, matrica))
                                 {
-                                    game.MovePawn(peshkaA, 1, 1, matrica);
+                                    gameField.MovePawn(peshkaA, 1, 1, matrica);
                                 }
                                 else
                                 {
@@ -154,11 +154,11 @@ namespace KingSurvival
                             }
                         case "ADL":
                             {
-                                pobedaPeshki = game.IsPawnAWinner(peshkaA, 1, -1, matrica);
+                                pobedaPeshki = gameField.IsPawnAWinner(peshkaA, 1, -1, matrica);
 
-                                if (game.CanMoveFugire(peshkaA , 1, -1, matrica))
+                                if (gameField.CanMoveFugire(peshkaA , 1, -1, matrica))
                                 {
-                                    game.MovePawn(peshkaA , 1, -1, matrica);
+                                    gameField.MovePawn(peshkaA , 1, -1, matrica);
                                 }
                                 else
                                 {
@@ -172,11 +172,11 @@ namespace KingSurvival
                             }
                         case "BDR":
                             {
-                                pobedaPeshki = game.IsPawnAWinner(peshkaB, 1, 1, matrica);
+                                pobedaPeshki = gameField.IsPawnAWinner(peshkaB, 1, 1, matrica);
 
-                                if (game.CanMoveFugire(peshkaB, 1, 1, matrica))
+                                if (gameField.CanMoveFugire(peshkaB, 1, 1, matrica))
                                 {
-                                    game.MovePawn(peshkaB, 1, 1, matrica);
+                                    gameField.MovePawn(peshkaB, 1, 1, matrica);
                                 }
                                 else
                                 {
@@ -189,11 +189,11 @@ namespace KingSurvival
                             }
                         case "BDL":
                             {
-                                pobedaPeshki = game.IsPawnAWinner(peshkaB, 1, -1, matrica);
+                                pobedaPeshki = gameField.IsPawnAWinner(peshkaB, 1, -1, matrica);
 
-                                if (game.CanMoveFugire(peshkaB , 1, -1, matrica))
+                                if (gameField.CanMoveFugire(peshkaB , 1, -1, matrica))
                                 {
-                                    game.MovePawn(peshkaB, 1, -1, matrica);
+                                    gameField.MovePawn(peshkaB, 1, -1, matrica);
                                 }
                                 else
                                 {
@@ -206,11 +206,11 @@ namespace KingSurvival
                             }
                         case "CDR":
                             {
-                                pobedaPeshki = game.IsPawnAWinner(peshkaC, 1, 1, matrica);
+                                pobedaPeshki = gameField.IsPawnAWinner(peshkaC, 1, 1, matrica);
 
-                                if (game.CanMoveFugire(peshkaC, 1, 1, matrica))
+                                if (gameField.CanMoveFugire(peshkaC, 1, 1, matrica))
                                 {
-                                    game.MovePawn(peshkaC, 1, 1, matrica);
+                                    gameField.MovePawn(peshkaC, 1, 1, matrica);
                                 }
                                 else
                                 {
@@ -223,11 +223,11 @@ namespace KingSurvival
                             }
                         case "CDL":
                             {
-                                pobedaPeshki = game.IsPawnAWinner(peshkaC, 1, -1, matrica);
+                                pobedaPeshki = gameField.IsPawnAWinner(peshkaC, 1, -1, matrica);
 
-                                if (game.CanMoveFugire(peshkaC, 1, -1, matrica))
+                                if (gameField.CanMoveFugire(peshkaC, 1, -1, matrica))
                                 {
-                                    game.MovePawn(peshkaC, 1, -1, matrica);
+                                    gameField.MovePawn(peshkaC, 1, -1, matrica);
                                 }
                                 else
                                 {
@@ -240,11 +240,11 @@ namespace KingSurvival
                             }
                         case "DDR":
                             {
-                                pobedaPeshki = game.IsPawnAWinner(peshkaD, 1, 1, matrica);
+                                pobedaPeshki = gameField.IsPawnAWinner(peshkaD, 1, 1, matrica);
 
-                                if (game.CanMoveFugire(peshkaD, 1, 1, matrica))
+                                if (gameField.CanMoveFugire(peshkaD, 1, 1, matrica))
                                 {
-                                    game.MovePawn(peshkaD, 1, 1, matrica);
+                                    gameField.MovePawn(peshkaD, 1, 1, matrica);
                                 }
                                 else
                                 {
@@ -257,11 +257,11 @@ namespace KingSurvival
                             }
                         case "DDL":
                             {
-                                pobedaPeshki = game.IsPawnAWinner(peshkaD, 1, -1, matrica);
+                                pobedaPeshki = gameField.IsPawnAWinner(peshkaD, 1, -1, matrica);
 
-                                if (game.CanMoveFugire(peshkaD, 1, -1, matrica))
+                                if (gameField.CanMoveFugire(peshkaD, 1, -1, matrica))
                                 {
-                                    game.MovePawn(peshkaD, 1, -1, matrica);
+                                    gameField.MovePawn(peshkaD, 1, -1, matrica);
                                 }
                                 else
                                 {
@@ -281,7 +281,7 @@ namespace KingSurvival
                                 break;
                             }
                     }
-                    game.PrintGameField(matrica);
+                    gameField.PrintGameField(matrica);
                 }
             }
             if (pobedaPeshki)
