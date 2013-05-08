@@ -18,10 +18,7 @@ namespace KingSurvival
             }
             set
             {
-                if (value > 7 || value < 0)
-                {
-                    throw new ArgumentOutOfRangeException("The row coord should be between 0-7");
-                }
+                this.row = value;
             }
         }
         public int Col 
@@ -32,10 +29,7 @@ namespace KingSurvival
             }
             set
             {
-                if (value > 7 || value < 0)
-                {
-                    throw new ArgumentOutOfRangeException("The col coord should be between 0-7");
-                }
+                this.col = value;
             }
         }
 
@@ -48,6 +42,23 @@ namespace KingSurvival
         {
             this.Row = row;
             this.Col = col;
+        }
+
+        public static MatrixCoords operator +(MatrixCoords a, MatrixCoords b)
+        {
+            return new MatrixCoords(a.Row + b.Row, a.Col + b.Col);
+        }
+
+        public static MatrixCoords operator -(MatrixCoords a, MatrixCoords b)
+        {
+            return new MatrixCoords(a.Row - b.Row, a.Col - b.Col);
+        }
+
+        public override bool Equals(object obj)
+        {
+            MatrixCoords objAsMatrixCoords = obj as MatrixCoords;
+
+            return objAsMatrixCoords.Row == this.Row && objAsMatrixCoords.Col == this.Col;
         }
     }
 }

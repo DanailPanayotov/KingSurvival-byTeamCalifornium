@@ -69,7 +69,7 @@
   <ItemGroup>
     <Compile Include="KingFigure.cs" />
     <Compile Include="MatrixCoords.cs" />
-    <Compile Include="Peshka.cs" />
+    <Compile Include="PawnFigure.cs" />
     <Compile Include="Game.cs" />
   </ItemGroup>
   <ItemGroup>

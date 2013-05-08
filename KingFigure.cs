@@ -5,36 +5,11 @@ using System.Text;
 
 namespace KingSurvival
 {
-
-    // this class represents the coordinates of the figure of the king 
-
-    public class KingFigure
+    public class KingFigure : MovingObject
     {
-        private MatrixCoords kingMatrixCoords;
-
-        // the constructor with zero arguments sets the position to origin (0,0)
-        public KingFigure()
-            : this(new MatrixCoords())
+        public KingFigure(MatrixCoords topLeft, MatrixCoords direction)
+            : base(topLeft, new char[,] { { 'K' } }, direction)
         {
         }
-
-        public KingFigure(MatrixCoords matrixCoords)
-        {
-            this.KingMatrixCoords.Row = matrixCoords.Row;
-            this.KingMatrixCoords.Col = matrixCoords.Col;
-        }
-
-        public MatrixCoords KingMatrixCoords
-        {
-            get 
-            { 
-                return this.kingMatrixCoords; 
-            }
-            set 
-            {
-                this.kingMatrixCoords = value;
-            }
-        }
-      
     }
 }
