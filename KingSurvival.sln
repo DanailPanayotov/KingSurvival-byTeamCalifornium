@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KingSurvival", "KingSurvival.csproj", "{3A2A101E-EC05-4513-B9D8-D8D04D5D45E4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestKingSurvival", "TestKingSurvival\TestKingSurvival.csproj", "{9E678759-A854-4EC1-9DF1-2311FFC3D09F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{3A2A101E-EC05-4513-B9D8-D8D04D5D45E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A2A101E-EC05-4513-B9D8-D8D04D5D45E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A2A101E-EC05-4513-B9D8-D8D04D5D45E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E678759-A854-4EC1-9DF1-2311FFC3D09F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E678759-A854-4EC1-9DF1-2311FFC3D09F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E678759-A854-4EC1-9DF1-2311FFC3D09F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E678759-A854-4EC1-9DF1-2311FFC3D09F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

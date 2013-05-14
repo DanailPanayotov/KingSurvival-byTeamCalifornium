@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace KingSurvival
 {
-    class Renderer
+    public class Renderer
     {
         private char[,] field;
         private int fieldSize;

@@ -2,7 +2,7 @@
 
 namespace KingSurvival
 {
-    abstract class Figure
+    public abstract class Figure
     {
         private int x;
         private int y;

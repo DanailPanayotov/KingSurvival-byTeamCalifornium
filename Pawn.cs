@@ -2,7 +2,7 @@ using System;
 
 namespace KingSurvival
 {
-    class Pawn
+    public class Pawn
         : Figure
     {
         public Pawn(int x, int y, char name)
