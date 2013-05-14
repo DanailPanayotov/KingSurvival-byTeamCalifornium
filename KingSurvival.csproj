@@ -67,10 +67,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KingFigure.cs" />
-    <Compile Include="MatrixCoords.cs" />
-    <Compile Include="PawnFigure.cs" />
-    <Compile Include="Game.cs" />
+    <Compile Include="Figure.cs" />
+    <Compile Include="GameLauncher.cs" />
+    <Compile Include="King.cs" />
+    <Compile Include="Pawn.cs" />
+    <Compile Include="GameEngine.cs" />
+    <Compile Include="Renderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
