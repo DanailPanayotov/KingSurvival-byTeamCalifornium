@@ -12,19 +12,49 @@ namespace KingSurvival
         public int X
         {
             get { return this.x; }
-            set { this.x = value; }
+            set 
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("coord must be >=0");
+                }
+                else
+                {
+                    this.x = value;
+                }
+            }
         }
 
         public int Y
         {
             get { return this.y; }
-            set { this.y = value; }
+            set 
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("coord must be >=0");
+                }
+                else
+                {
+                    this.y = value;
+                }
+            }
         }
 
         public char Name
         {
             get { return this.name; }
-            set { this.name = value; }
+            set 
+            {
+                if (value==null||value==string.Empty)
+                {
+                    throw new ArgumentNullException("type in name");
+                }
+                else
+                {
+                    this.name = value;
+                }
+            }
         }
 
         public Figure(int x, int y, char name)
