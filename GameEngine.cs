@@ -85,12 +85,14 @@ namespace KingSurvival
                 if (this.ValidMoveCheck(this.CurrentMove))
                 {
                     this.CurrentMove.Figure.Move(this.CurrentMove.XChange, this.CurrentMove.YChange);
-                    this.IsKingTurn = !this.IsKingTurn;
-                    this.IsInvalidMove = false;
+
                     if (this.IsKingTurn)
                     {
                         this.MovesCounter++;
                     }
+
+                    this.IsKingTurn = !this.IsKingTurn;
+                    this.IsInvalidMove = false;
                 }
                 else
                 {
