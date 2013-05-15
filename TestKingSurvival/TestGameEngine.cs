@@ -275,7 +275,7 @@ namespace TestKingSurvival
         //}
         
         [TestMethod]
-        public void TestGameEngineWithKingsWinKingReachesZeroRow()
+        public void TestGameEngineMovesCounterWithKingsWinKingReachesZeroRowScenario()
         {
             StringBuilder commands = new StringBuilder();
             commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
@@ -305,7 +305,7 @@ namespace TestKingSurvival
         }
 
         [TestMethod]
-        public void TestGameEngineWithKingsWinPawnsHaveNoValidMove()
+        public void TestGameEngineMovesCounterWithKingsWinPawnsHaveNoValidMoveScenario()
         {
             StringBuilder commands = new StringBuilder();
             commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
@@ -381,7 +381,7 @@ namespace TestKingSurvival
         #region KingLose
 
         [TestMethod]
-        public void TestGameEngineWithKingsLosesKingHasNoValidMove()
+        public void TestGameEngineMovesCounterWithKingsLosesKingHasNoValidMoveScenario()
         {
             StringBuilder commands = new StringBuilder();
             commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
