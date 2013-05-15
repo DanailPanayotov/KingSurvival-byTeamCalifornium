@@ -131,7 +131,7 @@ namespace KingSurvival
             throw new ArgumentOutOfRangeException("Wrong direction! Try again.");
         }
 
-        private bool GameOverCheck()
+        public bool GameOverCheck()
         {
             if (this.GetFigureByName('K').Y == 0)
             {

@@ -9,6 +9,8 @@ namespace TestKingSurvival
     [TestClass]
     public class TestGameEngine
     {
+        //The Tests for King win and lose SHOULD BE CHANGED,that's why they are commented
+
         #region Test Initial States
         [TestMethod]
         public void TestInitialIsKingsMoveOnStart()
@@ -101,7 +103,7 @@ namespace TestKingSurvival
         }
 
         #endregion
-
+        
         #region KingWin
 
         //[TestMethod]
@@ -662,6 +664,118 @@ namespace TestKingSurvival
 
         #endregion
 
+        #region GameOverCheck
+
+        [TestMethod]
+        public void TestGameOverCheckWithKingReachedZeroRow()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.IsKingTurn = false;
+            //Make 2,0 empty
+            gameEngine.Figures[1].X = 1;
+            gameEngine.Figures[1].Y = 1;
+            //Position King on row zero(imitate King has reached row zero)
+            gameEngine.Figures[4].X = 2;
+            gameEngine.Figures[4].Y = 0;
+            bool result = gameEngine.GameOverCheck();
+            bool expected = true;
+            Assert.AreEqual(expected, result);
+        }
+
+        //{'+','-','+','-','+','-','+','-'},
+        //{'-','+','-','+','-','+','-','+'},
+        //{'+','-','A','-','B','-','+','-'},
+        //{'-','+','-','K','-','+','-','+'},
+        //{'+','-','C','-','D','-','+','-'},
+        //{'-','+','-','+','-','+','-','+'},
+        //{'+','-','+','-','+','-','+','-'},
+        //{'-','+','-','+','-','+','-','+'}
+
+        [TestMethod]
+        public void TestGameOverCheckWithKingHasNoValidMoveSurroundedByAllPawns()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.IsKingTurn = true;
+            //Position King on 3,3
+            gameEngine.Figures[4].X = 3;
+            gameEngine.Figures[4].Y = 3;
+            //Suurround King with All Pawns
+            gameEngine.Figures[0].X = 2;
+            gameEngine.Figures[0].Y = 2;
+
+            gameEngine.Figures[1].X = 4;
+            gameEngine.Figures[1].Y = 2;
+
+            gameEngine.Figures[2].X = 2;
+            gameEngine.Figures[2].Y = 4;
+
+            gameEngine.Figures[3].X = 4;
+            gameEngine.Figures[3].Y = 4;
+
+            bool result = gameEngine.GameOverCheck();
+            bool expected = true;
+            Assert.AreEqual(expected, result);
+        }
+
+        //{'+','-','+','-','C','-','D','-'},
+        //{'-','+','-','+','-','+','-','+'},
+        //{'+','-','+','-','+','-','+','-'},
+        //{'-','+','-','+','-','+','-','+'},
+        //{'+','-','+','-','+','-','+','-'},
+        //{'-','+','-','+','-','+','-','+'},
+        //{'+','-','A','-','B','-','+','-'},
+        //{'-','+','-','K','-','+','-','+'}
+
+        [TestMethod]
+        public void TestGameOverCheckWithKingHasNoValidMoveSurroundedByTwoPawns()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.IsKingTurn = true;
+            //Position King on 3,3
+            gameEngine.Figures[4].X = 3;
+            gameEngine.Figures[4].Y = 7;
+            //Suurround King with Two Pawns
+            gameEngine.Figures[0].X = 2;
+            gameEngine.Figures[0].Y = 6;
+
+            gameEngine.Figures[1].X = 4;
+            gameEngine.Figures[1].Y = 6;
+
+            bool result = gameEngine.GameOverCheck();
+            bool expected = true;
+            Assert.AreEqual(expected, result);
+        }
+
+        //{'+','-','+','-','C','-','D','-'},
+        //{'-','+','-','+','-','+','-','+'},
+        //{'+','-','+','-','+','-','+','-'},
+        //{'-','+','-','+','-','+','-','+'},
+        //{'+','-','+','-','+','-','B','-'},
+        //{'-','+','-','+','-','+','-','К'},
+        //{'+','-','+','-','+','-','A','-'},
+        //{'-','+','-','+','-','+','-','+'}
+
+        [TestMethod]
+        public void TestGameOverCheckWithKingHasNoValidMoveSurroundedByTwoPawnsAndEndOfField()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.IsKingTurn = true;
+            //Position King on 3,3
+            gameEngine.Figures[4].X = 7;
+            gameEngine.Figures[4].Y = 5;
+            //Suurround King with Two Pawns 
+            gameEngine.Figures[0].X = 6;
+            gameEngine.Figures[0].Y = 6;
+
+            gameEngine.Figures[1].X = 6;
+            gameEngine.Figures[1].Y = 4;
+
+            bool result = gameEngine.GameOverCheck();
+            bool expected = true;
+            Assert.AreEqual(expected, result);
+        }
+
+        #endregion
 
        
     }
