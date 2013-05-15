@@ -1,29 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿// ********************************
+// <copyright file="GameEngine.cs" company="Team Californium">
+// Copyright (c) 2013 Team Californium. All rights reserved.
+// </copyright>
+//
+// ********************************
 namespace KingSurvival
 {
+    using System;
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// Holds the Run() method for the game.
+    /// </summary>
     public class GameEngine
-    {
+    {        
         public const int GAME_FIELD_SIZE = 8;
         public const int USER_COMMAND_LENGTH = 3;
 
-        public struct TurnMove
-        {
-            public string Command { get; set; }
-            public Figure Figure { get; set; }
-            public int XChange { get; set; }
-            public int YChange { get; set; }
-        }
-
-        public List<Figure> Figures { get; set; }
-        public Renderer Renderer { get; set; }
-        private TurnMove CurrentMove { get; set; }
-        public bool IsKingTurn { get; set; }
-        public bool IsKingWinner { get; set; }
-        public uint MovesCounter { get; set; }
-        public bool IsInvalidMove { get; set; }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameEngine"/> class.
+        /// </summary>
         public GameEngine()
         {
             this.Renderer = new Renderer(GAME_FIELD_SIZE);
@@ -42,13 +38,24 @@ namespace KingSurvival
             this.IsInvalidMove = false;
         }
 
+        public List<Figure> Figures { get; set; }
+        public Renderer Renderer { get; set; }
+        public bool IsKingTurn { get; set; }
+        public bool IsKingWinner { get; set; }
+        public uint MovesCounter { get; set; }
+        public bool IsInvalidMove { get; set; }
+        private TurnMove CurrentMove { get; set; }
+
+        /// <summary>
+        /// Provides logic of the game.
+        /// </summary>
         public void Run()
         {
             while (true)
             {
                 this.Renderer.Render(this.Figures);
 
-                if (GameOverCheck())
+                if (this.GameOverCheck())
                 {
                     Console.WriteLine();
                     Console.WriteLine(this.IsKingWinner ? "King wins in " + this.MovesCounter + " moves!" : "King looses!");
@@ -67,7 +74,7 @@ namespace KingSurvival
 
                 try
                 {
-                    CommandParse(command);
+                    this.CommandParse(command);
                 }
                 catch (Exception e)
                 {
@@ -75,60 +82,34 @@ namespace KingSurvival
                     continue;
                 }
 
-                if (ValidMoveCheck(CurrentMove))
+                if (this.ValidMoveCheck(this.CurrentMove))
                 {
                     this.CurrentMove.Figure.Move(this.CurrentMove.XChange, this.CurrentMove.YChange);
                     this.IsKingTurn = !this.IsKingTurn;
                     this.IsInvalidMove = false;
-                    this.MovesCounter++;
+                    if (this.IsKingTurn)
+                    {
+                        this.MovesCounter++;
+                    }
                 }
                 else
                 {
-                    IsInvalidMove = true;
+                    this.IsInvalidMove = true;
                 }
             }
         }
 
-        private void CommandParse(string command)
+        public Figure GetFigureByName(char name)
         {
-            if (command.Length != USER_COMMAND_LENGTH)
-            {
-                throw new ArgumentException("Invalid command passed! Try again.");
-            }
-
-            TurnMove currentMove = new TurnMove();
-            currentMove.Command = command;
-
-            char figureName = Char.Parse(command.Substring(0, 1));
-            currentMove.Figure = this.GetFigureByName(figureName);
-
-            if (currentMove.Figure.Equals(null))
-            {
-                throw new ArgumentNullException("Unexisting figure! Try again.");
-            }
-
-            char yDirection = Char.Parse(command.Substring(1, 1));
-            currentMove.YChange = GetCoordinateChange(yDirection);
-
-            char xDirection = Char.Parse(command.Substring(2, 1));
-            currentMove.XChange = GetCoordinateChange(xDirection);
-
-            this.CurrentMove = currentMove;
+            return this.Figures.Find(X => { return X.Name == name; });
         }
 
-        private int GetCoordinateChange(char direction)
+        public Figure GetFigureByCoordinates(int x, int y)
         {
-            switch (direction)
+            return this.Figures.Find(figure =>
             {
-                case 'U':
-                case 'L':
-                    return -1;
-                case 'D':
-                case 'R':
-                    return 1;
-            }
-
-            throw new ArgumentOutOfRangeException("Wrong direction! Try again.");
+                return (figure.X == x && figure.Y == y);
+            });
         }
 
         public bool GameOverCheck()
@@ -147,9 +128,9 @@ namespace KingSurvival
             {
                 foreach (string direction in figure.DefaultMoves)
                 {
-                    CommandParse(direction);
+                    this.CommandParse(direction);
 
-                    if (ValidMoveCheck(this.CurrentMove))
+                    if (this.ValidMoveCheck(this.CurrentMove))
                     {
                         isOver = false;
                         break;
@@ -172,24 +153,66 @@ namespace KingSurvival
 
         public bool ValidMoveCheck(TurnMove move)
         {
-            if (IsKingTurn && (move.Figure is Pawn))
+            if (this.IsKingTurn && (move.Figure is Pawn))
             {
                 return false;
             }
 
-            if (!IsKingTurn && (move.Figure is King))
+            if (!this.IsKingTurn && (move.Figure is King))
             {
                 return false;
             }
 
             bool isValid = false;
 
-            if (MoveInFieldCheck(move) && MoveOnEmptyCheck(move) && PossibleDirectionCheck(move))
+            if (this.MoveInFieldCheck(move) && this.MoveOnEmptyCheck(move) && this.PossibleDirectionCheck(move))
             {
                 isValid = true;
             }
 
             return isValid;
+        }
+
+        private void CommandParse(string command)
+        {
+            if (command.Length != USER_COMMAND_LENGTH)
+            {
+                throw new ArgumentException("Invalid command passed! Try again.");
+            }
+
+            TurnMove currentMove = new TurnMove();
+            currentMove.Command = command;
+
+            char figureName = char.Parse(command.Substring(0, 1));
+            currentMove.Figure = this.GetFigureByName(figureName);
+
+            if (currentMove.Figure.Equals(null))
+            {
+                throw new ArgumentNullException("Unexisting figure! Try again.");
+            }
+
+            char yDirection = char.Parse(command.Substring(1, 1));
+            currentMove.YChange = this.GetCoordinateChange(yDirection);
+
+            char xDirection = char.Parse(command.Substring(2, 1));
+            currentMove.XChange = this.GetCoordinateChange(xDirection);
+
+            this.CurrentMove = currentMove;
+        }
+
+        private int GetCoordinateChange(char direction)
+        {
+            switch (direction)
+            {
+                case 'U':
+                case 'L':
+                    return -1;
+                case 'D':
+                case 'R':
+                    return 1;
+            }
+
+            throw new ArgumentOutOfRangeException("Wrong direction! Try again.");
         }
 
         private bool MoveInFieldCheck(TurnMove move)
@@ -239,17 +262,15 @@ namespace KingSurvival
             return isPossible;
         }
 
-        public Figure GetFigureByName(char name)
+        /// <summary>
+        /// Hold all information needed for the move.
+        /// </summary>
+        public struct TurnMove
         {
-            return this.Figures.Find(X => { return X.Name == name; });
-        }
-
-        public Figure GetFigureByCoordinates(int x, int y)
-        {
-            return this.Figures.Find(figure =>
-            {
-                return (figure.X == x && figure.Y == y);
-            });
+            public string Command { get; set; }
+            public Figure Figure { get; set; }
+            public int XChange { get; set; }
+            public int YChange { get; set; }
         }
     }
 }

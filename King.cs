@@ -1,7 +1,13 @@
-using System;
-
+// ********************************
+// <copyright file="King.cs" company="Team Californium">
+// Copyright (c) 2013 Team Californium. All rights reserved.
+// </copyright>
+//
+// ********************************
 namespace KingSurvival
 {
+    using System;
+
     public class King
         : Figure
     {

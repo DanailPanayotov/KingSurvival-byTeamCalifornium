@@ -1,23 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿// ********************************
+// <copyright file="Renderer.cs" company="Team Californium">
+// Copyright (c) 2013 Team Californium. All rights reserved.
+// </copyright>
+//
+// ********************************
 namespace KingSurvival
 {
+    using System;
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// Creates new renderer instance to render game field on the console.
+    /// </summary>
     public class Renderer
     {
-        private char[,] field;
-        private int fieldSize;
+        /// <summary>
+        /// Holds field objects (figures, and empty cells). 
+        /// </summary>
+        private readonly char[,] field;
+        private readonly int fieldSize;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Renderer"/> class,
+        /// by given size of the field to be rendered.
+        /// </summary>
         public Renderer(int fieldSize)
         {
             this.fieldSize = fieldSize;
             this.field = new char[this.fieldSize, this.fieldSize];
         }
 
+        /// <summary>
+        /// Renders the field on the console.
+        /// </summary>
+        /// <param name="figures">List of all figures in the field.</param>
         public void Render(List<Figure> figures)
         {
-            InitField();
-            RenderObjects2Field(figures);
+            this.InitField();
+            this.RenderObjects2Field(figures);
 
             Console.Clear();
 
@@ -38,7 +58,7 @@ namespace KingSurvival
             {
                 for (int j = 0; j < this.fieldSize; j++)
                 {
-                    if (isEven(i + j))
+                    if (this.IsEven(i + j))
                     {
                         this.field[i, j] = '+';
                     }
@@ -58,7 +78,7 @@ namespace KingSurvival
             }
         }
 
-        private bool isEven(int number)
+        private bool IsEven(int number)
         {
             bool isEven = false;
 
