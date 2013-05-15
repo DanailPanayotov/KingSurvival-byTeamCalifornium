@@ -8,7 +8,7 @@ namespace KingSurvival
         public const int GAME_FIELD_SIZE = 8;
         public const int USER_COMMAND_LENGTH = 3;
 
-        private struct TurnMove
+        public struct TurnMove
         {
             public string Command { get; set; }
             public Figure Figure { get; set; }
@@ -80,10 +80,7 @@ namespace KingSurvival
                     this.CurrentMove.Figure.Move(this.CurrentMove.XChange, this.CurrentMove.YChange);
                     this.IsKingTurn = !this.IsKingTurn;
                     this.IsInvalidMove = false;
-                    if (IsKingTurn)
-                    {
-                        this.MovesCounter++;
-                    }
+                    this.MovesCounter++;
                 }
                 else
                 {
@@ -134,7 +131,7 @@ namespace KingSurvival
             throw new ArgumentOutOfRangeException("Wrong direction! Try again.");
         }
 
-        private bool GameOverCheck()
+        public bool GameOverCheck()
         {
             if (this.GetFigureByName('K').Y == 0)
             {
@@ -173,7 +170,7 @@ namespace KingSurvival
             return isOver;
         }
 
-        private bool ValidMoveCheck(TurnMove move)
+        public bool ValidMoveCheck(TurnMove move)
         {
             if (IsKingTurn && (move.Figure is Pawn))
             {
