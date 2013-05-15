@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace KingSurvival
 {
-    class GameEngine
+    public class GameEngine
     {
         public const int GAME_FIELD_SIZE = 8;
         public const int USER_COMMAND_LENGTH = 3;
@@ -18,7 +18,7 @@ namespace KingSurvival
 
         public List<Figure> Figures { get; set; }
         public Renderer Renderer { get; set; }
-        private TurnMove currentMove { get; set; }
+        private TurnMove CurrentMove { get; set; }
         public bool IsKingTurn { get; set; }
         public bool IsKingWinner { get; set; }
         public uint MovesCounter { get; set; }
@@ -27,7 +27,7 @@ namespace KingSurvival
         public GameEngine()
         {
             this.Renderer = new Renderer(GAME_FIELD_SIZE);
-            this.currentMove = new TurnMove();
+            this.CurrentMove = new TurnMove();
             this.Figures = new List<Figure>();
 
             this.Figures.Add(new Pawn(0, 0, 'A'));
@@ -75,9 +75,9 @@ namespace KingSurvival
                     continue;
                 }
 
-                if (ValidMoveCheck(currentMove))
+                if (ValidMoveCheck(CurrentMove))
                 {
-                    this.currentMove.Figure.Move(this.currentMove.XChange, this.currentMove.YChange);
+                    this.CurrentMove.Figure.Move(this.CurrentMove.XChange, this.CurrentMove.YChange);
                     this.IsKingTurn = !this.IsKingTurn;
                     this.IsInvalidMove = false;
                     this.MovesCounter++;
@@ -113,7 +113,7 @@ namespace KingSurvival
             char xDirection = Char.Parse(command.Substring(2, 1));
             currentMove.XChange = GetCoordinateChange(xDirection);
 
-            this.currentMove = currentMove;
+            this.CurrentMove = currentMove;
         }
 
         private int GetCoordinateChange(char direction)
@@ -149,7 +149,7 @@ namespace KingSurvival
                 {
                     CommandParse(direction);
 
-                    if (ValidMoveCheck(this.currentMove))
+                    if (ValidMoveCheck(this.CurrentMove))
                     {
                         isOver = false;
                         break;
