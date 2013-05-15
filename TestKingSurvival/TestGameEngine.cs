@@ -9,6 +9,7 @@ namespace TestKingSurvival
     [TestClass]
     public class TestGameEngine
     {
+        #region Test Initial States
         [TestMethod]
         public void TestInitialIsKingsMoveOnStart()
         {
@@ -98,237 +99,570 @@ namespace TestKingSurvival
             Assert.AreEqual(pawnCX, engine.Figures[2].X);
             Assert.AreEqual(pawnCY, engine.Figures[2].Y);
         }
-        
+
+        #endregion
+
+        #region KingWin
+
+        //[TestMethod]
+        //public void TestGameEngineWithKingsWinKingReachesRow0()
+        //{
+
+        //    char[,] matrix = new char[,]   {
+        //            {'A','-','B','-','C','-','K','-'},
+        //            {'-','+','-','+','-','+','-','+'},
+        //            {'+','-','+','-','+','-','+','-'},
+        //            {'-','+','-','+','-','+','-','+'},
+        //            {'+','-','+','-','+','-','+','-'},
+        //            {'-','+','-','+','-','+','-','+'},
+        //            {'D','-','+','-','+','-','+','-'},
+        //            {'-','+','-','+','-','+','-','+'}
+        //         };
+
+        //    StringBuilder expectedMatrix = new StringBuilder();
+        //    for (int i = 0; i < matrix.GetLength(0); i++)
+        //    {
+        //        for (int j = 0; j < matrix.GetLength(1); j++)
+        //        {
+        //            expectedMatrix.AppendFormat("{0,2}", matrix[i, j]);
+        //        }
+        //        expectedMatrix.AppendLine();
+        //    }
+
+        //    StringBuilder commands = new StringBuilder();
+        //    commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+
+        //    StringReader input = new StringReader(commands.ToString());
+
+        //    Console.SetIn(input);
+        //    GameEngine engine = new GameEngine();
+        //    engine.Run();
+        //    StringWriter result = new StringWriter();
+        //    Console.SetOut(result);
+
+        //    StringBuilder resultMatrix = new StringBuilder();
+        //    for (int i = 0; i < engine.Renderer.field.GetLength(0); i++)
+        //    {
+        //        for (int j = 0; j < engine.Renderer.field.GetLength(1); j++)
+        //        {
+        //            resultMatrix.AppendFormat("{0,2}", engine.Renderer.field[i, j]);
+        //        }
+        //        resultMatrix.AppendLine();
+        //    }
+
+        //    Assert.AreEqual(expectedMatrix.ToString(), resultMatrix.ToString());
+        //}
+
+        //[TestMethod]
+        //public void TestGameEngineWithKingsWinPawnsHasNoValidMove()
+        //{
+
+        //    char[,] matrix = new char[,]   {
+        //            {'+','-','+','-','+','-','+','-'},
+        //            {'-','+','-','+','-','+','-','+'},
+        //            {'+','-','+','-','+','-','+','-'},
+        //            {'-','+','-','+','-','+','-','+'},
+        //            {'+','-','+','-','+','-','+','-'},
+        //            {'-','+','-','+','-','+','-','+'},
+        //            {'+','-','K','-','+','-','+','-'},
+        //            {'-','D','-','C','-','B','-','A'}
+        //         };
+
+        //    StringBuilder expectedMatrix = new StringBuilder();
+        //    for (int i = 0; i < matrix.GetLength(0); i++)
+        //    {
+        //        for (int j = 0; j < matrix.GetLength(1); j++)
+        //        {
+        //            expectedMatrix.AppendFormat("{0,2}", matrix[i, j]);
+        //        }
+        //        expectedMatrix.AppendLine();
+        //    }
+
+        //    StringBuilder commands = new StringBuilder();
+        //    commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("BDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("BDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("CDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("CDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("CDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("CDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("CDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("CDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("CDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("CDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("DDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+
+        //    StringReader input = new StringReader(commands.ToString());
+
+        //    Console.SetIn(input);
+        //    GameEngine engine = new GameEngine();
+        //    engine.Run();
+        //    StringWriter result = new StringWriter();
+        //    Console.SetOut(result);
+
+        //    StringBuilder resultMatrix = new StringBuilder();
+        //    for (int i = 0; i < engine.Renderer.field.GetLength(0); i++)
+        //    {
+        //        for (int j = 0; j < engine.Renderer.field.GetLength(1); j++)
+        //        {
+        //            resultMatrix.AppendFormat("{0,2}", engine.Renderer.field[i, j]);
+        //        }
+        //        resultMatrix.AppendLine();
+        //    }
+
+        //    Assert.AreEqual(expectedMatrix.ToString(), resultMatrix.ToString());
+        //}
+
+        #endregion
+
+        #region KingLose
+
+        //[TestMethod]
+        //public void TestGameEngineWithKingLosesKingHasNoValidMove()
+        //{
+
+        //    char[,] matrix = new char[,]   {
+        //            {'A','-','+','-','C','-','+','-'},
+        //            {'-','+','-','+','-','+','-','+'},
+        //            {'+','-','+','-','+','-','D','-'},
+        //            {'-','+','-','+','-','+','-','K'},
+        //            {'+','-','+','-','+','-','B','-'},
+        //            {'-','+','-','+','-','+','-','+'},
+        //            {'+','-','+','-','+','-','+','-'},
+        //            {'-','+','-','+','-','+','-','+'}
+        //         };
+
+        //    StringBuilder expectedMatrix = new StringBuilder();
+        //    for (int i = 0; i < matrix.GetLength(0); i++)
+        //    {
+        //        for (int j = 0; j < matrix.GetLength(1); j++)
+        //        {
+        //            expectedMatrix.AppendFormat("{0,2}", matrix[i, j]);
+        //        }
+        //        expectedMatrix.AppendLine();
+        //    }
+
+        //    StringBuilder commands = new StringBuilder();
+        //    commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("DDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KDL{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+        //    commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+
+        //    StringReader input = new StringReader(commands.ToString());
+
+        //    Console.SetIn(input);
+        //    GameEngine engine = new GameEngine();
+        //    engine.Run();
+        //    StringWriter result = new StringWriter();
+        //    Console.SetOut(result);
+
+        //    StringBuilder resultMatrix = new StringBuilder();
+        //    for (int i = 0; i < engine.Renderer.field.GetLength(0); i++)
+        //    {
+        //        for (int j = 0; j < engine.Renderer.field.GetLength(1); j++)
+        //        {
+        //            resultMatrix.AppendFormat("{0,2}", engine.Renderer.field[i, j]);
+        //        }
+        //        resultMatrix.AppendLine();
+        //    }
+
+        //    Assert.AreEqual(expectedMatrix.ToString(), resultMatrix.ToString());
+        //}
+
+        #endregion
+
+        #region GetFigureByCoordinates
+
         [TestMethod]
-        public void TestGameEngineWithKingsWinKingReachesRow0()
+        public void TestGetFigureByCoordinatesWithPawn()
         {
-
-            char[,] matrix = new char[,]   {
-                    {'A','-','B','-','C','-','K','-'},
-                    {'-','+','-','+','-','+','-','+'},
-                    {'+','-','+','-','+','-','+','-'},
-                    {'-','+','-','+','-','+','-','+'},
-                    {'+','-','+','-','+','-','+','-'},
-                    {'-','+','-','+','-','+','-','+'},
-                    {'D','-','+','-','+','-','+','-'},
-                    {'-','+','-','+','-','+','-','+'}
-                 };
-
-            StringBuilder expectedMatrix = new StringBuilder();
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    expectedMatrix.AppendFormat("{0,2}", matrix[i, j]);
-                }
-                expectedMatrix.AppendLine();
-            }
-
-            StringBuilder commands = new StringBuilder();
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-
-            StringReader input = new StringReader(commands.ToString());
-
-            Console.SetIn(input);
-            GameEngine engine = new GameEngine();
-            engine.Run();
-            StringWriter result = new StringWriter();
-            Console.SetOut(result);
-
-            StringBuilder resultMatrix = new StringBuilder();
-            for (int i = 0; i < engine.Renderer.field.GetLength(0); i++)
-            {
-                for (int j = 0; j < engine.Renderer.field.GetLength(1); j++)
-                {
-                    resultMatrix.AppendFormat("{0,2}", engine.Renderer.field[i, j]);
-                }
-                resultMatrix.AppendLine();
-            }
-
-            Assert.AreEqual(expectedMatrix.ToString(), resultMatrix.ToString());
+            GameEngine gameEngine = new GameEngine();
+            Figure result = gameEngine.GetFigureByCoordinates(2, 0);
+            Figure expected = new Pawn(2, 0, 'B');
+            Assert.AreEqual(expected.X, result.X);
+            Assert.AreEqual(expected.Y, result.Y);
+            Assert.AreEqual(expected.Name, result.Name);
         }
 
         [TestMethod]
-        public void TestGameEngineWithKingLosesKingHasNoValidMove()
+        public void TestGetFigureByCoordinatesWithKing()
         {
-
-            char[,] matrix = new char[,]   {
-                    {'A','-','+','-','C','-','+','-'},
-                    {'-','+','-','+','-','+','-','+'},
-                    {'+','-','+','-','+','-','D','-'},
-                    {'-','+','-','+','-','+','-','K'},
-                    {'+','-','+','-','+','-','B','-'},
-                    {'-','+','-','+','-','+','-','+'},
-                    {'+','-','+','-','+','-','+','-'},
-                    {'-','+','-','+','-','+','-','+'}
-                 };
-
-            StringBuilder expectedMatrix = new StringBuilder();
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    expectedMatrix.AppendFormat("{0,2}", matrix[i, j]);
-                }
-                expectedMatrix.AppendLine();
-            }
-
-            StringBuilder commands = new StringBuilder();
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-
-            StringReader input = new StringReader(commands.ToString());
-
-            Console.SetIn(input);
-            GameEngine engine = new GameEngine();
-            engine.Run();
-            StringWriter result = new StringWriter();
-            Console.SetOut(result);
-
-            StringBuilder resultMatrix = new StringBuilder();
-            for (int i = 0; i < engine.Renderer.field.GetLength(0); i++)
-            {
-                for (int j = 0; j < engine.Renderer.field.GetLength(1); j++)
-                {
-                    resultMatrix.AppendFormat("{0,2}", engine.Renderer.field[i, j]);
-                }
-                resultMatrix.AppendLine();
-            }
-
-            Assert.AreEqual(expectedMatrix.ToString(), resultMatrix.ToString());
+            GameEngine gameEngine = new GameEngine();
+            Figure result = gameEngine.GetFigureByCoordinates(3, 7);
+            Figure expected = new King(3, 7, 'K');
+            Assert.AreEqual(expected.X, result.X);
+            Assert.AreEqual(expected.Y, result.Y);
+            Assert.AreEqual(expected.Name, result.Name);
         }
 
         [TestMethod]
-        public void TestGameEngineWithKingsWinPawnsHasNoValidMove()
+        public void TestGetFigureByCoordinatesWithNull()
         {
-
-            char[,] matrix = new char[,]   {
-                    {'+','-','+','-','+','-','+','-'},
-                    {'-','+','-','+','-','+','-','+'},
-                    {'+','-','+','-','+','-','+','-'},
-                    {'-','+','-','+','-','+','-','+'},
-                    {'+','-','+','-','+','-','+','-'},
-                    {'-','+','-','+','-','+','-','+'},
-                    {'+','-','K','-','+','-','+','-'},
-                    {'-','D','-','C','-','B','-','A'}
-                 };
-
-            StringBuilder expectedMatrix = new StringBuilder();
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    expectedMatrix.AppendFormat("{0,2}", matrix[i, j]);
-                }
-                expectedMatrix.AppendLine();
-            }
-
-            StringBuilder commands = new StringBuilder();
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("CDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("CDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("CDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("CDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("CDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("CDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("CDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("CDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-
-            StringReader input = new StringReader(commands.ToString());
-
-            Console.SetIn(input);
-            GameEngine engine = new GameEngine();
-            engine.Run();
-            StringWriter result = new StringWriter();
-            Console.SetOut(result);
-
-            StringBuilder resultMatrix = new StringBuilder();
-            for (int i = 0; i < engine.Renderer.field.GetLength(0); i++)
-            {
-                for (int j = 0; j < engine.Renderer.field.GetLength(1); j++)
-                {
-                    resultMatrix.AppendFormat("{0,2}", engine.Renderer.field[i, j]);
-                }
-                resultMatrix.AppendLine();
-            }
-
-            Assert.AreEqual(expectedMatrix.ToString(), resultMatrix.ToString());
+            GameEngine gameEngine = new GameEngine();
+            Figure result = gameEngine.GetFigureByCoordinates(3, 3);
+            Figure expected = null;
+            Assert.AreSame(expected, result);
         }
+        #endregion
+
+        #region GetFigureByName
+
+        [TestMethod]
+        public void TestGetFigureByNameWithKing()
+        {
+            GameEngine gameEngine = new GameEngine();
+            Figure result = gameEngine.GetFigureByName('K');
+            Figure expected = new King(3, 7, 'K');
+            Assert.AreEqual(expected.X, result.X);
+            Assert.AreEqual(expected.Y, result.Y);
+            Assert.AreEqual(expected.Name, result.Name);
+        }
+
+        [TestMethod]
+        public void TestGetFigureByNameWithPawn()
+        {
+            GameEngine gameEngine = new GameEngine();
+            Figure result = gameEngine.GetFigureByName('D');
+            Figure expected = new King(6, 0, 'D');
+            Assert.AreEqual(expected.X, result.X);
+            Assert.AreEqual(expected.Y, result.Y);
+            Assert.AreEqual(expected.Name, result.Name);
+        }
+
+        [TestMethod]
+        public void TestGetFigureByNameWithWithNoSuchName()
+        {
+            GameEngine gameEngine = new GameEngine();
+            Figure result = gameEngine.GetFigureByName('W');
+            Figure expected = null;
+            Assert.AreSame(expected, result);
+        }
+
+        #endregion
+
+        #region ValidMoveCheck
+
+        [TestMethod]
+        public void TestValidMoveCheckWithPawnAndNotKingTurn()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.IsKingTurn = false;
+            Figure pawn = new Pawn(0, 0, 'A');
+            GameEngine.TurnMove currentMove = new GameEngine.TurnMove();
+            currentMove.Command = "ADR";
+            currentMove.Figure = pawn;
+            currentMove.XChange = 1;
+            currentMove.YChange = 1;
+            bool result = gameEngine.ValidMoveCheck(currentMove);
+            bool expected = true;
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void TestValidMoveCheckWithPawnAndKingTurn()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.IsKingTurn = true;
+            Figure pawn = new Pawn(2, 0, 'B');
+            GameEngine.TurnMove currentMove = new GameEngine.TurnMove();
+            currentMove.Command = "BDR";
+            currentMove.Figure = pawn;
+            currentMove.XChange = 1;
+            currentMove.YChange = 1;
+            bool result = gameEngine.ValidMoveCheck(currentMove);
+            bool expected = false;
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void TestValidMoveCheckWithKingAndKingTurn()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.IsKingTurn = true;
+            Figure king = new King(3, 7, 'K');
+            GameEngine.TurnMove currentMove = new GameEngine.TurnMove();
+            currentMove.Command = "KUR";
+            currentMove.Figure = king;
+            currentMove.XChange = 1;
+            currentMove.YChange = -1;
+            bool result = gameEngine.ValidMoveCheck(currentMove);
+            bool expected = true;
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void TestValidMoveCheckWithKingAndNotKingTurn()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.IsKingTurn = false;
+            Figure king = new King(3, 7, 'K');
+            GameEngine.TurnMove currentMove = new GameEngine.TurnMove();
+            currentMove.Command = "KUL";
+            currentMove.Figure = king;
+            currentMove.XChange = -1;
+            currentMove.YChange = -1;
+            bool result = gameEngine.ValidMoveCheck(currentMove);
+            bool expected = false;
+            Assert.AreEqual(expected, result);
+        }
+
+        #region MoveOutOfField
+
+        [TestMethod]
+        public void TestValidMoveCheckWithKingAndMoveOutOfFieldDown()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.IsKingTurn = true;
+            Figure king = new King(3, 7, 'K');
+            GameEngine.TurnMove currentMove = new GameEngine.TurnMove();
+            currentMove.Command = "KDL";
+            currentMove.Figure = king;
+            currentMove.XChange = -1;
+            currentMove.YChange = 1;
+            bool result = gameEngine.ValidMoveCheck(currentMove);
+            bool expected = false;
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void TestValidMoveCheckWithPawnAndMoveOutOfFieldUp()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.IsKingTurn = false;
+            Figure pawn = new Pawn(2, 0, 'B');
+            GameEngine.TurnMove currentMove = new GameEngine.TurnMove();
+            currentMove.Command = "BUL";
+            currentMove.Figure = pawn;
+            currentMove.XChange = -1;
+            currentMove.YChange = -1;
+            bool result = gameEngine.ValidMoveCheck(currentMove);
+            bool expected = false;
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void TestValidMoveCheckWithPawnAndMoveOutOfFieldRight()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.IsKingTurn = false;
+            Figure pawn = new Pawn(7, 1, 'D');
+            GameEngine.TurnMove currentMove = new GameEngine.TurnMove();
+            currentMove.Command = "DDR";
+            currentMove.Figure = pawn;
+            currentMove.XChange = 1;
+            currentMove.YChange = 1;
+            bool result = gameEngine.ValidMoveCheck(currentMove);
+            bool expected = false;
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void TestValidMoveCheckWithPawnAndMoveOutOfFieldLeft()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.IsKingTurn = false;
+            Figure pawn = new Pawn(0, 0, 'A');
+            GameEngine.TurnMove currentMove = new GameEngine.TurnMove();
+            currentMove.Command = "ADL";
+            currentMove.Figure = pawn;
+            currentMove.XChange = -1;
+            currentMove.YChange = 1;
+            bool result = gameEngine.ValidMoveCheck(currentMove);
+            bool expected = false;
+            Assert.AreEqual(expected, result);
+        }
+
+        #endregion
+
+        #region MoveOnEmptyCheck
+
+        [TestMethod]
+        public void TestValidMoveCheckWithPawnAndMoveOnEmptyCheckTrue()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.IsKingTurn = false;
+            Figure pawn = new Pawn(0, 0, 'A');
+            GameEngine.TurnMove currentMove = new GameEngine.TurnMove();
+            currentMove.Command = "ADR";
+            currentMove.Figure = pawn;
+            currentMove.XChange = 1;
+            currentMove.YChange = 1;
+            bool result = gameEngine.ValidMoveCheck(currentMove);
+            bool expected = true;
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void TestValidMoveCheckWithTwoPawnsAndMoveOnEmptyCheckFalse()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.IsKingTurn = false;
+            //Position B on 1,1
+            gameEngine.Figures[1].X = 1;
+            gameEngine.Figures[1].Y = 1;
+            Figure pawn = new Pawn(0, 0, 'A');
+            GameEngine.TurnMove currentMove = new GameEngine.TurnMove();
+            //Move A on 1,1
+            currentMove.Command = "ADR";
+            currentMove.Figure = pawn;
+            currentMove.XChange = 1;
+            currentMove.YChange = 1;
+            bool result = gameEngine.ValidMoveCheck(currentMove);
+            bool expected = false;
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void TestValidMoveCheckWithPawnAndKingMoveOnEmptyCheckFalse()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.IsKingTurn = true;
+            //Position A on 2,2
+            gameEngine.Figures[0].X = 2;
+            gameEngine.Figures[0].Y = 2;
+            Figure king = new King(3, 3, 'K');
+            GameEngine.TurnMove currentMove = new GameEngine.TurnMove();
+            //Move K on 2,2
+            currentMove.Command = "KUL";
+            currentMove.Figure = king;
+            currentMove.XChange = -1;
+            currentMove.YChange = -1;
+            bool result = gameEngine.ValidMoveCheck(currentMove);
+            bool expected = false;
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void TestValidMoveCheckWithKingAndPawnMoveOnEmptyCheckFalse()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.IsKingTurn = false;
+            //Position K on 3,3
+            gameEngine.Figures[4].X = 3;
+            gameEngine.Figures[4].Y = 3;
+            Figure pawn = new Pawn(2, 2, 'A');
+            GameEngine.TurnMove currentMove = new GameEngine.TurnMove();
+            //Move A on 3,3
+            currentMove.Command = "ADR";
+            currentMove.Figure = pawn;
+            currentMove.XChange = 1;
+            currentMove.YChange = 1;
+            bool result = gameEngine.ValidMoveCheck(currentMove);
+            bool expected = false;
+            Assert.AreEqual(expected, result);
+        }
+
+        #endregion
+
+        #region PossibleDirectionCheck
+
+        [TestMethod]
+        public void TestValidMoveCheckWithPawnAndPossibleDirectionFalseWithUpRight()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.IsKingTurn = false;
+            Figure pawn = new Pawn(1, 1, 'A');
+            GameEngine.TurnMove currentMove = new GameEngine.TurnMove();
+            currentMove.Command = "AUR";
+            currentMove.Figure = pawn;
+            currentMove.XChange = 1;
+            currentMove.YChange = -1;
+            bool result = gameEngine.ValidMoveCheck(currentMove);
+            bool expected = false;
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void TestValidMoveCheckWithPawnAndPossibleDirectionFalseWithUpLeft()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.IsKingTurn = false;
+            Figure pawn = new Pawn(3, 1, 'B');
+            GameEngine.TurnMove currentMove = new GameEngine.TurnMove();
+            currentMove.Command = "BUL";
+            currentMove.Figure = pawn;
+            currentMove.XChange = -1;
+            currentMove.YChange = -1;
+            bool result = gameEngine.ValidMoveCheck(currentMove);
+            bool expected = false;
+            Assert.AreEqual(expected, result);
+        }
+        #endregion
+
+        #endregion
+
+
+       
     }
 }

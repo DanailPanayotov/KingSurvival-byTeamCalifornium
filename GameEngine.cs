@@ -8,7 +8,7 @@ namespace KingSurvival
         public const int GAME_FIELD_SIZE = 8;
         public const int USER_COMMAND_LENGTH = 3;
 
-        private struct TurnMove
+        public struct TurnMove
         {
             public string Command { get; set; }
             public Figure Figure { get; set; }
@@ -170,7 +170,7 @@ namespace KingSurvival
             return isOver;
         }
 
-        private bool ValidMoveCheck(TurnMove move)
+        public bool ValidMoveCheck(TurnMove move)
         {
             if (IsKingTurn && (move.Figure is Pawn))
             {
