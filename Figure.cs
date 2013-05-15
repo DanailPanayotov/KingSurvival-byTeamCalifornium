@@ -46,14 +46,7 @@ namespace KingSurvival
             get { return this.name; }
             set 
             {
-                if (value==null||value==string.Empty)
-                {
-                    throw new ArgumentNullException("type in name");
-                }
-                else
-                {
-                    this.name = value;
-                }
+                this.name = value;
             }
         }
 
