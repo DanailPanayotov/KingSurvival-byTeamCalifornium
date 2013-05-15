@@ -188,7 +188,7 @@ namespace KingSurvival
             char figureName = char.Parse(command.Substring(0, 1));
             currentMove.Figure = this.GetFigureByName(figureName);
 
-            if (currentMove.Figure.Equals(null))
+            if (currentMove.Figure==null)
             {
                 throw new ArgumentNullException("Unexisting figure! Try again.");
             }
