@@ -175,7 +175,7 @@ namespace KingSurvival
             return isValid;
         }
 
-        private void CommandParse(string command)
+        public void CommandParse(string command)
         {
             if (command.Length != USER_COMMAND_LENGTH)
             {

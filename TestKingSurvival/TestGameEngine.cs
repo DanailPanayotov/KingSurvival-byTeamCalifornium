@@ -676,6 +676,50 @@ namespace TestKingSurvival
 
         #endregion
 
-       
+        #region CommandParse
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestCommandParse_LongerThanExpectedCommand()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.CommandParse("KURR");           
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestCommandParse_ShorterThanExpectedCommand()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.CommandParse("KU");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TestCommandParse_UnexistingFigure()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.CommandParse("NUR");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void TestCommandParse_WrongYCommand()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.CommandParse("KSR");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void TestCommandParse_WrongXCommand()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.CommandParse("KFR");
+        }
+
+        # endregion
+
+
+
     }
 }
