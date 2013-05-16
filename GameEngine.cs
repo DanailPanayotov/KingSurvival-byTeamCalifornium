@@ -121,7 +121,7 @@ namespace KingSurvival
         }
 
         /// <summary>
-        /// Check if the game is over in these conditions:
+        /// Checks if the game is over in these conditions:
         /// -king has reached row zero;
         /// -figures has no valid moves e.g. pawsn have surrounded the king;
         /// </summary>
@@ -165,7 +165,7 @@ namespace KingSurvival
         }
 
         /// <summary>
-        /// Check if current move is valid.A move is valid when:
+        /// Checks if current move is valid.A move is valid when:
         /// -the coordinates of the position to move are inside the field;
         /// -the the coordinates of the position to move are empty/free;
         /// -the direction of the move of current figure is allowed;
@@ -193,7 +193,7 @@ namespace KingSurvival
         }
 
         /// <summary>
-        /// Parse current command.A command is correct when:
+        /// Parses current command.A command is correct when:
         /// -it's length is equal to 3 (e.g. KUL,ADR...);
         /// -the first letter of the command is valid character for figure;
         /// </summary>
