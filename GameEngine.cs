@@ -101,11 +101,17 @@ namespace KingSurvival
             }
         }
 
+        /// <summary>
+        /// Gets figure by given character, if figure with such name exists in the list of figures.
+        /// </summary>
         public Figure GetFigureByName(char name)
         {
             return this.Figures.Find(X => { return X.Name == name; });
         }
 
+        /// <summary>
+        /// Gets figure by given coodinates, if figure with such coordinates exists in the list of figures.
+        /// </summary>
         public Figure GetFigureByCoordinates(int x, int y)
         {
             return this.Figures.Find(figure =>
@@ -114,6 +120,11 @@ namespace KingSurvival
             });
         }
 
+        /// <summary>
+        /// Check if the game is over in these conditions:
+        /// -king has reached row zero;
+        /// -figures has no valid moves e.g. pawsn have surrounded the king;
+        /// </summary>
         public bool GameOverCheck()
         {
             if (this.GetFigureByName('K').Y == 0)
@@ -153,6 +164,12 @@ namespace KingSurvival
             return isOver;
         }
 
+        /// <summary>
+        /// Check if current move is valid.A move is valid when:
+        /// -the coordinates of the position to move are inside the field;
+        /// -the the coordinates of the position to move are empty/free;
+        /// -the direction of the move of current figure is allowed;
+        /// </summary>
         public bool ValidMoveCheck(TurnMove move)
         {
             if (this.IsKingTurn && (move.Figure is Pawn))
@@ -175,6 +192,11 @@ namespace KingSurvival
             return isValid;
         }
 
+        /// <summary>
+        /// Parse current command.A command is correct when:
+        /// -it's length is equal to 3 (e.g. KUL,ADR...);
+        /// -the first letter of the command is valid character for figure;
+        /// </summary>
         public void CommandParse(string command)
         {
             if (command.Length != USER_COMMAND_LENGTH)
