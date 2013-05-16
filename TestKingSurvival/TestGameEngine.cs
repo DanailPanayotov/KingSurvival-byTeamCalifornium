@@ -103,147 +103,8 @@ namespace TestKingSurvival
         }
 
         #endregion
-        
-        #region KingWin
 
-        [TestMethod]
-        public void TestGameEngineMovesCounterWithKingsWinKingReachesZeroRowScenario()
-        {
-            StringBuilder commands = new StringBuilder();
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-
-            StringReader input = new StringReader(commands.ToString());
-
-            Console.SetIn(input);
-            GameEngine engine = new GameEngine();
-            engine.Run();
-            StringWriter result = new StringWriter();
-            Console.SetOut(result);
-            uint expectedMoveCount = 7;
-            Assert.IsTrue(engine.IsKingWinner);
-            Assert.AreEqual(expectedMoveCount, engine.MovesCounter);
-        }
-
-        [TestMethod]
-        public void TestGameEngineMovesCounterWithKingsWinPawnsHaveNoValidMoveScenario()
-        {
-            StringBuilder commands = new StringBuilder();
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("CDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("CDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("CDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("CDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("CDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("CDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("CDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
-
-            StringReader input = new StringReader(commands.ToString());
-
-            Console.SetIn(input);
-            GameEngine engine = new GameEngine();
-            engine.Run();
-            StringWriter result = new StringWriter();
-            Console.SetOut(result);
-            uint expectedMoveCount = 28;
-
-            Assert.IsTrue(engine.IsKingWinner);
-            Assert.AreEqual(expectedMoveCount, engine.MovesCounter);
-        }
-        #endregion
-
-        #region KingLose
-
-        [TestMethod]
-        public void TestGameEngineMovesCounterWithKingsLosesKingHasNoValidMoveScenario()
-        {
-            StringBuilder commands = new StringBuilder();
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KDL{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
-            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
-
-            StringReader input = new StringReader(commands.ToString());
-
-            Console.SetIn(input);
-            GameEngine engine = new GameEngine();
-            engine.Run();
-            StringWriter result = new StringWriter();
-            Console.SetOut(result);
-            uint expectedMoveCount = 6;
-            Assert.IsFalse(engine.IsKingWinner);
-            Assert.AreEqual(expectedMoveCount, engine.MovesCounter);
-        }
-
-        #endregion
-
-        #region GetFigureByCoordinates
+        #region Test GetFigureByCoordinates
 
         [TestMethod]
         public void TestGetFigureByCoordinatesWithPawn()
@@ -277,7 +138,7 @@ namespace TestKingSurvival
         }
         #endregion
 
-        #region GetFigureByName
+        #region Test GetFigureByName
 
         [TestMethod]
         public void TestGetFigureByNameWithKing()
@@ -312,7 +173,7 @@ namespace TestKingSurvival
 
         #endregion
 
-        #region ValidMoveCheck
+        #region Test ValidMoveCheck
 
         [TestMethod]
         public void TestValidMoveCheckWithPawnAndNotKingTurn()
@@ -563,7 +424,7 @@ namespace TestKingSurvival
 
         #endregion
 
-        #region GameOverCheck
+        #region Test GameOverCheck
 
         [TestMethod]
         public void TestGameOverCheckWithKingReachedZeroRow()
@@ -674,9 +535,33 @@ namespace TestKingSurvival
             Assert.AreEqual(expected, result);
         }
 
+        [TestMethod]
+        public void TestGameOverCheckFalse()
+        {
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.IsKingTurn = true;
+            //Just Move the figures arround 
+            gameEngine.Figures[0].X = 2;
+            gameEngine.Figures[0].Y = 2;
+
+            gameEngine.Figures[1].X = 3;
+            gameEngine.Figures[1].Y = 1;
+
+            // K and C neighbours
+            gameEngine.Figures[2].X = 3;
+            gameEngine.Figures[2].Y = 5;
+
+            gameEngine.Figures[4].X = 4;
+            gameEngine.Figures[4].Y = 6;
+
+            bool result = gameEngine.GameOverCheck();
+            bool expected = false;
+            Assert.AreEqual(expected, result);
+        }
+
         #endregion
 
-        #region CommandParse
+        #region Test CommandParse
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void TestCommandParse_LongerThanExpectedCommand()
@@ -719,7 +604,140 @@ namespace TestKingSurvival
 
         # endregion
 
+        #region Test CounterOfMoves
 
+        [TestMethod]
+        public void TestGameEngineMovesCounterWithKingsWinKingReachesZeroRowScenario()
+        {
+            StringBuilder commands = new StringBuilder();
+            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
 
+            StringReader input = new StringReader(commands.ToString());
+
+            Console.SetIn(input);
+            GameEngine engine = new GameEngine();
+            engine.Run();
+            StringWriter result = new StringWriter();
+            Console.SetOut(result);
+            uint expectedMoveCount = 7;
+            Assert.IsTrue(engine.IsKingWinner);
+            Assert.AreEqual(expectedMoveCount, engine.MovesCounter);
+        }
+
+        [TestMethod]
+        public void TestGameEngineMovesCounterWithKingsWinPawnsHaveNoValidMoveScenario()
+        {
+            StringBuilder commands = new StringBuilder();
+            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("ADR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("BDL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("BDL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("CDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("CDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("CDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("CDL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("CDL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("CDL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("CDL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("DDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("DDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KDR{0}", System.Environment.NewLine));
+
+            StringReader input = new StringReader(commands.ToString());
+
+            Console.SetIn(input);
+            GameEngine engine = new GameEngine();
+            engine.Run();
+            StringWriter result = new StringWriter();
+            Console.SetOut(result);
+            uint expectedMoveCount = 28;
+
+            Assert.IsTrue(engine.IsKingWinner);
+            Assert.AreEqual(expectedMoveCount, engine.MovesCounter);
+        }
+      
+        [TestMethod]
+        public void TestGameEngineMovesCounterWithKingsLosesKingHasNoValidMoveScenario()
+        {
+            StringBuilder commands = new StringBuilder();
+            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("DDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("DDL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KDL{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("KUR{0}", System.Environment.NewLine));
+            commands.AppendFormat(String.Format("BDR{0}", System.Environment.NewLine));
+
+            StringReader input = new StringReader(commands.ToString());
+
+            Console.SetIn(input);
+            GameEngine engine = new GameEngine();
+            engine.Run();
+            StringWriter result = new StringWriter();
+            Console.SetOut(result);
+            uint expectedMoveCount = 6;
+            Assert.IsFalse(engine.IsKingWinner);
+            Assert.AreEqual(expectedMoveCount, engine.MovesCounter);
+        }
+
+        #endregion
     }
 }
