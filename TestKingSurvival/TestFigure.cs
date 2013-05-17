@@ -8,7 +8,7 @@ namespace TestKingSurvival
     public class TestFigure
     {
         [TestMethod]
-        public void TestMove()
+        public void TestMoveDownLeft()
         {
             Figure king = new King(2,2,'K');
             king.Move(-1, 1);
@@ -17,7 +17,7 @@ namespace TestKingSurvival
         }
 
         [TestMethod]
-        public void TestMove1()
+        public void TestMoveDownRight()
         {
             Figure king = new King(2, 2, 'K');
             king.Move(1, 1);
@@ -26,7 +26,7 @@ namespace TestKingSurvival
         }
 
         [TestMethod]
-        public void TestMove2()
+        public void TestMoveUpLeft()
         {
             Figure king = new King(2, 2, 'K');
             king.Move(-1, -1);
@@ -35,7 +35,7 @@ namespace TestKingSurvival
         }
 
         [TestMethod]
-        public void TestMove3()
+        public void TestMoveUpRight()
         {
             Figure king = new King(2, 2, 'K');
             king.Move(1, -1);
