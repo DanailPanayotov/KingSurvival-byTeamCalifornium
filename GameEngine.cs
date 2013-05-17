@@ -35,7 +35,7 @@ namespace KingSurvival
             this.IsKingTurn = true;
             this.IsKingWinner = false;
             this.MovesCounter = 0;
-            this.IsInvalidMove = false;
+            this.IsValidMove = true;
         }
 
         public List<Figure> Figures { get; set; }
@@ -43,7 +43,7 @@ namespace KingSurvival
         public bool IsKingTurn { get; set; }
         public bool IsKingWinner { get; set; }
         public uint MovesCounter { get; set; }
-        public bool IsInvalidMove { get; set; }
+        public bool IsValidMove { get; set; }
         private TurnMove CurrentMove { get; set; }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace KingSurvival
 
                 Console.WriteLine();
 
-                if (this.IsInvalidMove)
+                if (!this.IsValidMove)
                 {
                     Console.WriteLine("Invalid move! Try again.");
                 }
@@ -78,7 +78,7 @@ namespace KingSurvival
                 }
                 catch (Exception e)
                 {
-                    this.IsInvalidMove = true;
+                    this.IsValidMove = false;
                     continue;
                 }
 
@@ -92,11 +92,11 @@ namespace KingSurvival
                     }
 
                     this.IsKingTurn = !this.IsKingTurn;
-                    this.IsInvalidMove = false;
+                    this.IsValidMove = true;
                 }
                 else
                 {
-                    this.IsInvalidMove = true;
+                    this.IsValidMove = false;
                 }
             }
         }
@@ -166,6 +166,7 @@ namespace KingSurvival
 
         /// <summary>
         /// Checks if current move is valid.A move is valid when:
+        /// -it is the moving figure turn to move
         /// -the coordinates of the position to move are inside the field;
         /// -the the coordinates of the position to move are empty/free;
         /// -the direction of the move of current figure is allowed;
