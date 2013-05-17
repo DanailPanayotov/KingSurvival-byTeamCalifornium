@@ -9,8 +9,6 @@ namespace TestKingSurvival
     [TestClass]
     public class TestGameEngine
     {
-        //The Tests for King win and lose SHOULD BE CHANGED,that's why they are commented
-
         #region Test Initial States
         [TestMethod]
         public void TestInitialIsKingsMoveOnStart()
