@@ -58,7 +58,9 @@ namespace KingSurvival
                 if (this.GameOverCheck())
                 {
                     Console.WriteLine();
-                    Console.WriteLine(this.IsKingWinner ? "King wins in " + this.MovesCounter + " moves!" : "King looses!");
+                    Console.WriteLine(this.IsKingWinner ? 
+                        "King wins in " + this.MovesCounter + " moves!" : 
+                        "King looses!");
                     break;
                 }
 
@@ -135,7 +137,8 @@ namespace KingSurvival
 
             bool isOver = true;
 
-            List<Figure> figuresToMove = this.Figures.FindAll(X => { return this.IsKingTurn ? X is King : X is Pawn; });
+            List<Figure> figuresToMove = this.Figures.FindAll(X => 
+            { return this.IsKingTurn ? X is King : X is Pawn; });
 
             foreach (Figure figure in figuresToMove)
             {
